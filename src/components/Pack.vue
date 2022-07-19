@@ -122,31 +122,17 @@ export default {
         this.$message.success('查询成功')
       }
     },
-    clickInputshow(a){
-      console.log(a);
-      a.show=!a.show
-      console.log(this.goodsList.items);
-    },
     //修改装箱数量
     changeInputshow(row) {
       
       this.inputshow = !this.inputshow
-      let items = this.goodsListInfo.items
-      for (let i = 0; i < items.length; i++) {
-        
-        if (this.goodsListInfo.items[i].sku ==row.sku) {
-          if (this.packtotal == '') {
-            return
-          }
-          if (this.packtotal * 1 <= this.goodsListInfo.items[i].order_qty && this.packtotal * 1 >= 0) {
-            this.goodsListInfo.items[i].in_box_qty = this.packtotal
-          }
-          else {
-            this.$message.error('请输入正确的数字')
-          }
-
-        }
+      if(row.order_qty>=row.in_box_qty){
+        return
+      }else{
+        row.in_box_qty=0
+        this.$message.error('请输入正确的数字')
       }
+      
     },
     //删除商品
     deletegood(sku) {
