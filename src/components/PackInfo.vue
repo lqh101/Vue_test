@@ -32,11 +32,11 @@
                         </el-input>
                 </el-col>
                 <el-col :span="4" class="col">
-                    <div class="sub-title">体积重</div>
+                    <div class="sub-title">体积重量</div>
                     <div class="weightfont">{{goodsForm.height*goodsForm.width*goodsForm.chang/6000}}</div>
                 </el-col>
                 <el-col :span="4" class="col">
-                    <div class="sub-title">计费重</div>
+                    <div class="sub-title">计费重量</div>
                     <div class="weightfont">{{goodsForm.height*goodsForm.width*goodsForm.chang/6000>goodsForm.boxweight?goodsForm.boxweight:goodsForm.boxweight}}</div>
                 </el-col>
             </div>
