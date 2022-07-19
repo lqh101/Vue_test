@@ -15,19 +15,19 @@
                 </el-col>
                 <el-col :span="4" class="col">
                     <div class="sub-title">长</div>
-                    <el-input placeholder="长" v-model="goodsForm.chang">
+                    <el-input placeholder="长" v-model="goodsForm.chang" @blur="change">
                             <template slot="append">CM</template>
                         </el-input>
                 </el-col>
                 <el-col :span="4" class="col">
                     <div class="sub-title">宽</div>
-                    <el-input placeholder="长" v-model="goodsForm.width">
+                    <el-input placeholder="长" v-model="goodsForm.width" @blur="change">
                             <template slot="append">CM</template>
                         </el-input>
                 </el-col>
                 <el-col :span="4" class="col">
                     <div class="sub-title">高</div>
-                    <el-input placeholder="长" v-model="goodsForm.height">
+                    <el-input placeholder="长" v-model="goodsForm.height" @blur="change">
                             <template slot="append">CM</template>
                         </el-input>
                 </el-col>
@@ -53,10 +53,8 @@ export default {
             goodsForm: {
                 boxweight:'1',
                 chang: '2',
-                
                 width:'3',
                 height:'4'
-                
             }
         }
     },
@@ -67,6 +65,9 @@ export default {
                 h("span", " " + column.label),
             ];
         },
+        change(){
+            this.goodsForm = this.goodsForm
+        }
 
     },
     mounted() {
