@@ -59,10 +59,10 @@
         <el-table-column prop="in_box_qty" label="装箱数量">
 
           <template v-slot:default="scope">
-            <el-input  @blur="changeInputshow(scope.row)" placeholder="请输入数量" v-model="scope.row.in_box_qty" v-if="inputshow">
+            <el-input  @blur="changeInputshow(scope.row)" placeholder="请输入数量" v-model="scope.row.in_box_qty" v-if="showId==scope.row.sku">
             </el-input>
             <!-- {{this.goodsListInfo.items}} -->
-            <div  @click="changeInputshow(scope.row)" v-if="!inputshow">{{ scope.row.in_box_qty }}</div>
+            <div  @click="changeInputshow(scope.row)" v-if="!(showId==scope.row.sku)">{{ scope.row.in_box_qty }}</div>
           </template>
         </el-table-column>
         <el-table-column label="装箱状态">
@@ -99,7 +99,8 @@ export default {
       tableData: [],
       inputshow: false,
       packtotal: '',
-      activeName: 'first'
+      activeName: 'first',
+      showId:''
     }
   },
   mounted() {
@@ -125,6 +126,11 @@ export default {
     //修改装箱数量
     changeInputshow(row) {
       
+      if(this.showId!=row.sku){
+        this.showId=row.sku
+      }else{
+        this.showId=""
+      }
       this.inputshow = !this.inputshow
       if(row.order_qty>=row.in_box_qty){
         return
@@ -132,6 +138,7 @@ export default {
         row.in_box_qty=0
         this.$message.error('请输入正确的数字')
       }
+      
       
     },
     //删除商品
